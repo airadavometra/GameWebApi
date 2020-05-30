@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManchkinWebApi", "ManchkinWebApi.csproj", "{629E4610-00CE-479E-B117-87DE55996C2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{629E4610-00CE-479E-B117-87DE55996C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629E4610-00CE-479E-B117-87DE55996C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629E4610-00CE-479E-B117-87DE55996C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629E4610-00CE-479E-B117-87DE55996C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A5F6EB8-39F4-4D9C-AD21-AF8105FAFEF1}
+	EndGlobalSection
+EndGlobal
