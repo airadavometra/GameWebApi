@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ManchkinWebApi.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace ManchkinWebApi
 {
@@ -26,6 +20,16 @@ namespace ManchkinWebApi
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
+
+			services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
+				builder
+				.AllowAnyMethod()
+				.AllowAnyHeader()
+				.AllowAnyOrigin();
+				//.WithOrigins("http://192.168.1.12:8080/");
+			}));
+
+			services.AddSignalR();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +44,12 @@ namespace ManchkinWebApi
 
 			app.UseRouting();
 
-			app.UseAuthorization();
+			app.UseCors("CorsPolicy");
 
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
+				endpoints.MapHub<GameHub>("/gameHub");
 			});
 		}
 	}
