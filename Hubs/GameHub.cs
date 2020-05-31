@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using ManchkinWebApi.Controllers;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +9,14 @@ namespace ManchkinWebApi.Hubs
 {
 	public class GameHub : Hub
 	{
-		readonly Random rnd = new Random();
-		public async Task SendMessage(string message)
+		private GamersController GamersController = new GamersController();
+		public async Task OnNewGamerJoin(string gamerName)
 		{
-			await Clients.All.SendAsync("ReceiveMessage", message, "ALLO FROM SERVER");
-		}
-
-		public async Task SendRandomNumber()
-		{
-			int num = rnd.Next(1, 13);
-
-			await Clients.All.SendAsync("ReceiveRandomNumber", num);
+			var gamers = GamersController.AddNewGamer(gamerName);
+			//var gamers = GamersController.GetAllGamers();
+			await Clients.Others.SendAsync("SetNewGamer", gamerName, gamers.Count -1);
+			await Clients.Caller.SendAsync("SetAllGamers", gamers.Count - 1, gamers);
 		}
 	}
+	
 }
